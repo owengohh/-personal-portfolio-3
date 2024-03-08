@@ -1,10 +1,9 @@
 import React from "react";
 
-
 const About = () => {
 	return (
 		<div className="w-full bg-secondary rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
-			<div className="md:col-span-2">
+			<div className="col-span-1 md:col-span-2">
 				<h1 className="text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl p-3 text-bold">
 					ABOUT ME.
 				</h1>
@@ -26,15 +25,13 @@ const About = () => {
 					will come my way.
 				</p>
 			</div>
-			<hr className="border-primary col-span-2 w-full" />
+			<hr className="border-primary w-full md:col-span-2" />
 			<div className="md:col-span-2">
 				<h1 className="text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl p-3 text-bold">
 					WHAT DO I DO.
 				</h1>
 			</div>
-			<div className="flex justify-center items-center">
-				
-			</div>
+			<div className="flex justify-center items-center"></div>
 		</div>
 	);
 };
