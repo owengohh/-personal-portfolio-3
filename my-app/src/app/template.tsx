@@ -8,7 +8,7 @@ const variants = {
 	enter: { opacity: 1 },
 };
 
-const Template = ({ children }) => {
+const Template = ({ children }: { children: React.ReactNode }) => {
 	const completion = useScrollProgress();
 	return (
 		<>

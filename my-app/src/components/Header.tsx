@@ -1,18 +1,18 @@
-"use client"
+"use client";
 import Navbar from "./Navbar";
 
 const Header = () => {
-	return (
-		<header>
-			<div className="container mx-auto">
-				<div className="flex justify-between items-center">
-					<div>
+  return (
+    <header>
+      <div className="container mx-auto">
+        <div className="flex items-center justify-between">
+          <div>
             <Navbar></Navbar>
-					</div>
-				</div>
-			</div>
-		</header>
-	);
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

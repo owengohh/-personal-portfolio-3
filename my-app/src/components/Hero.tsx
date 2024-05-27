@@ -1,7 +1,7 @@
 "use client";
 import { TypewriterEffect } from "./ui/typewriter-effect";
 
-export function Hero() {
+export default function Hero() {
 	const words = [
 		{
 			text: "HI",

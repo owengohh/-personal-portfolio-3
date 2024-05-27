@@ -9,7 +9,6 @@ import { Drawer, DrawerClose, DrawerContent } from "./ui/drawer";
 import { useState, useEffect } from "react";
 import ThemeToggler from "./ThemeToggler";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
 import { Toggle } from "./ui/toggle";
 
 export default function Navbar() {
@@ -24,7 +23,9 @@ export default function Navbar() {
 
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-	const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
+	const [isSmallScreen, setIsSmallScreen] = useState(
+		typeof window !== "undefined" ? window.innerWidth < 640 : false
+	);
 
 	useEffect(() => {
 		const checkScreenSize = () => {
@@ -39,7 +40,7 @@ export default function Navbar() {
 	return (
 		<div className={navbarClasses}>
 			<div className="w-full">
-				<NavigationMenu className="flex justify-between min-w-full">
+				<NavigationMenu className="flex min-w-full justify-between">
 					<NavigationMenuList className="flex">
 						<NavigationMenuItem className="px-3">
 							<p>Owen Goh</p>
@@ -59,10 +60,8 @@ export default function Navbar() {
 						<NavigationMenuList className="hidden sm:flex ">
 							{navItems.map((item, index) => (
 								<NavigationMenuItem key={index} className="px-1">
-									<NavigationMenuLink>
-										<Toggle>
-											<Link href={item.link}>{item.name}</Link>
-										</Toggle>
+									<NavigationMenuLink href={item.link}>
+										{item.name}
 									</NavigationMenuLink>
 								</NavigationMenuItem>
 							))}

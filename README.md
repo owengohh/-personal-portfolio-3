@@ -1,2 +1,3 @@
 # -personal-portfolio-3
-learning how to build using nextjs, tailwindcss and shadcn
+
+this is my personal portfolio v3 where I used React, ShadCN, and TailwindCSS to build it.
