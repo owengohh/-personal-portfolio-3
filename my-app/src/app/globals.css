@@ -59,3 +59,26 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+.no-visible-scrollbar {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.card {
+	transition: transform 0.3s ease, box-shadow 0.1s ease;
+}
+.card:hover {
+	transform: scale(1.05);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shadow {
+	box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.2);
+}
+

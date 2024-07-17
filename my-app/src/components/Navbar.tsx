@@ -12,13 +12,13 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Toggle } from "./ui/toggle";
 
 export default function Navbar() {
-	const navbarClasses = `container fixed top-5 left-0 right-0 z-50 items-center bg-primary text-secondary p-2 transition-all duration-300 rounded-full w-11/12`;
+	const navbarClasses = `container fixed top-5 left-0 right-0 z-50 items-center bg-primary text-secondary p-2 transition-all duration-300 rounded-full w-11/12 shadow`;
 
 	const navItems = [
-		{ name: "Home", link: "" },
+		{ name: "Home", link: "#home" },
 		{ name: "About", link: "#about" },
 		{ name: "Projects", link: "#projects" },
-		{ name: "Contact", link: "#contact" },
+    { name: "Music", link: "#spotify" },
 	];
 
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -43,7 +43,14 @@ export default function Navbar() {
 				<NavigationMenu className="flex min-w-full justify-between">
 					<NavigationMenuList className="flex">
 						<NavigationMenuItem className="px-3">
-							<p>Owen Goh</p>
+							<p>
+								<label
+									onClick={() => {
+										window.location.href = "#home";
+									}}>
+									Owen Goh
+								</label>
+							</p>
 						</NavigationMenuItem>
 					</NavigationMenuList>
 					{isSmallScreen ? (
