@@ -86,7 +86,11 @@ const Projects = () => {
 	return (
 		<div className="flex justify-center">
 			<div className="w-full lg:w-6/12 mx-5">
-				<Card className="mb-5 border-black ">
+				<Card
+					className="mb-5 border-black"
+					onClick={() => {
+						window.open("https://www.linkedin.com/in/owengohh");
+					}}>
 					<CardHeader>
 						<CardTitle>Experiences</CardTitle>
 						<CardDescription>View my Linkedin here.</CardDescription>
@@ -114,7 +118,11 @@ const Projects = () => {
 						))}
 					</CardContent>
 				</Card>
-				<Card className="mb-5 border-black">
+				<Card
+					className="mb-5 border-black"
+					onClick={() => {
+						window.open("https://github.com/owengohh");
+					}}>
 					<CardHeader>
 						<CardTitle>Projects</CardTitle>
 						<CardDescription>View my Github here.</CardDescription>
