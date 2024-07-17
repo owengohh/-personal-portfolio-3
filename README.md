@@ -24,22 +24,30 @@ To get a local copy up and running, follow these simple steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/personal-portfolio-v3.git
+   ```
 
 2. Install npm packages:
-  ```bash
-  npm install
+      ```bash
+      npm install
+      ```
 
 3. Run the development server:
-  ```bash
-  npm run dev
+      ```bash
+      npm run dev
+      ```
 
-Visit http://localhost:3000 to view the project in your browser.
+4. Visit http://localhost:3000 to view the project in your browser.
+
+## Deployment
+
+This project is hosted on Vercel, a platform known for its ease of use for deploying Next.js applications. Vercel seamlessly integrates with your GitHub repository to automate deployments, ensuring that your latest changes are always live.
+
+### Live Site
+
+You can view the deployed version of the portfolio here: [Visit Live Site](https://personal-portfolio-3-mu.vercel.app/ )
 
 ## Contact
 Owen Goh  - owengoh2001@gmail.com
 
 ## Project Link
 Project Link: https://github.com/owengohh/personal-portfolio-v3
-
-## Hosted Website
-https://personal-portfolio-3-mu.vercel.app/
