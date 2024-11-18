@@ -46,7 +46,7 @@ export default function Component() {
 								<span className="font-medium">Education</span>
 							</div>
 							<p className="text-muted-foreground">
-								Junior at Singapore Management University
+								Senior at Singapore Management University
 								pursuing a degree in Software Engineering.
 							</p>
 						</div>
