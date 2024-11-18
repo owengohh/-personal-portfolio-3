@@ -1,52 +1,118 @@
-"use client";
-
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+	Gamepad,
+	GraduationCap,
+	Code,
+	Cloud,
+	Dumbbell,
+	Heart,
+} from "lucide-react";
 import React from "react";
+import Image from 'next/image';
 
-import { useState, useEffect } from "react";
-
-import Image from "next/image";
-
-const About = () => {
+export default function Component() {
 	return (
-		<div className="bg-secondary flex-col items-center flex justify-center p-5">
-			<hr className="border-primary w-full" />
-			<div className="w-full max-w-4xl py-5">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-					<div className="flex items-center justify-center">
-						<div
-							className="border-primary m-5 max-w-xl border-2 rounded-full overflow-hidden relative"
-							style={{ width: "300px", height: "300px" }}>
-							<Image
-								src="/profilepic.png"
-								alt=""
-								layout="fill" // This makes the image fill the container
-								objectFit="cover" // This ensures the image covers the area without distorting its aspect ratio
-							/>
-						</div>
+		<section className="w-full max-w-4xl mx-auto p-6">
+			<div className="text-center space-y-8">
+				<div className="relative">
+					<div className="absolute inset-0 flex items-center">
+						<div className="w-full border-t border-muted" />
 					</div>
-					<div className="flex flex-col items-center justify-center">
-						<h1 className="text-bold text-3xl lg:text-3xl xl:text-3xl 2xl:text-5xl pb-2">
-							ABOUT ME
-						</h1>
-						<p className="pb-2 px-4">
-							Junior at Singapore Management University pursuing a degree in
-							Software Engineering.
-							<br />
-							<br />I am passionate about creating applications that are able to
-							solve real-world problems and provide value to peoples lives.
-							Currently, I am interested in full-stack development and cloud
-							computing. I am always looking for opportunities to learn and
-							grow.
-							<br />
-							<br />
-              In my free time, I enjoy working out, playing video games and running.
-						</p>
+					<div className="relative flex justify-center">
+						<h2 className="bg-background px-6 text-3xl font-bold tracking-tight">
+							About Me
+						</h2>
+					</div>
+				</div>
+
+				<div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+					<div className="relative group">
+						<div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary/50 to-primary opacity-75 blur transition duration-500 group-hover:opacity-100" />
+                        <div className="relative aspect-square w-48 md:w-64 rounded-full overflow-hidden border-4 border-background">
+                            <Image
+                                alt="Profile picture"
+                                className="object-cover"
+                                src="/profilepic.png"
+                                layout="fill"
+                            />
+                        </div>
+					</div>
+
+					<div className="space-y-4 text-left flex-1">
+						<div className="space-y-2">
+							<div className="flex items-center gap-2 text-lg">
+								<GraduationCap className="h-5 w-5 text-primary" />
+								<span className="font-medium">Education</span>
+							</div>
+							<p className="text-muted-foreground">
+								Junior at Singapore Management University
+								pursuing a degree in Software Engineering.
+							</p>
+						</div>
+
+						<div className="space-y-2">
+							<div className="flex items-center gap-2 text-lg">
+								<Heart className="h-5 w-5 text-primary" />
+								<span className="font-medium">Passion</span>
+							</div>
+							<p className="text-muted-foreground">
+								I am passionate about creating applications that
+								are able to solve real-world problems and
+								provide value to peoples lives.
+							</p>
+						</div>
+
+						<div className="space-y-2">
+							<div className="flex items-center gap-2 text-lg">
+								<Code className="h-5 w-5 text-primary" />
+								<span className="font-medium">Interests</span>
+							</div>
+							<div className="flex flex-wrap gap-2">
+								<Badge variant="secondary">
+									Full-stack Development
+								</Badge>
+								<Badge variant="secondary">
+									Cloud Computing
+								</Badge>
+								<Badge variant="secondary">
+									Problem Solving
+								</Badge>
+								<Badge variant="secondary">UI/UX Design</Badge>
+							</div>
+						</div>
+
+						<Card className="bg-muted/50">
+							<CardContent className="p-4">
+								<div className="flex items-center gap-2 text-lg mb-2">
+									<Dumbbell className="h-5 w-5 text-primary" />
+									<span className="font-medium">Hobbies</span>
+								</div>
+								<div className="flex flex-wrap gap-4">
+									<div className="flex items-center gap-2">
+										<Dumbbell className="h-4 w-4 text-muted-foreground" />
+										<span className="text-sm text-muted-foreground">
+											Working out
+										</span>
+									</div>
+									<div className="flex items-center gap-2">
+										<Gamepad className="h-4 w-4 text-muted-foreground" />
+										<span className="text-sm text-muted-foreground">
+											Video games
+										</span>
+									</div>
+									<div className="flex items-center gap-2">
+										<Cloud className="h-4 w-4 text-muted-foreground" />
+										<span className="text-sm text-muted-foreground">
+											Running
+										</span>
+									</div>
+								</div>
+							</CardContent>
+						</Card>
 					</div>
 				</div>
 			</div>
-			<hr className="border-primary w-full" />
-		</div>
+		</section>
 	);
-};
-
-export default About;
+}

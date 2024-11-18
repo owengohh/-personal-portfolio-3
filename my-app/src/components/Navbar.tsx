@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import ThemeToggler from "./ThemeToggler";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Toggle } from "./ui/toggle";
+import Link from "next/link";
 
 export default function Navbar() {
 	const navbarClasses = `container fixed top-5 left-0 right-0 z-50 items-center bg-primary text-secondary p-2 transition-all duration-300 rounded-full w-11/12 shadow`;
@@ -17,8 +18,9 @@ export default function Navbar() {
 	const navItems = [
 		{ name: "Home", link: "#home" },
 		{ name: "About", link: "#about" },
+		{ name: "Experiences", link: "#experience" },
 		{ name: "Projects", link: "#projects" },
-    { name: "Music", link: "#spotify" },
+		{ name: "Music", link: "#spotify" },
 	];
 
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -66,7 +68,9 @@ export default function Navbar() {
 					) : (
 						<NavigationMenuList className="hidden sm:flex ">
 							{navItems.map((item, index) => (
-								<NavigationMenuItem key={index} className="px-1">
+								<NavigationMenuItem
+									key={index}
+									className="px-1">
 									<NavigationMenuLink href={item.link}>
 										{item.name}
 									</NavigationMenuLink>
@@ -79,6 +83,7 @@ export default function Navbar() {
 					)}
 				</NavigationMenu>
 			</div>
+
 			<Drawer
 				open={isDrawerOpen}
 				onOpenChange={setIsDrawerOpen}
@@ -88,7 +93,7 @@ export default function Navbar() {
 						{navItems.map((item, index) => (
 							<Toggle key={index}>
 								<p key={index} className="p-3">
-									<a href={item.link}>{item.name}</a>
+									<Link href={item.link}>{item.name}</Link>
 								</p>
 							</Toggle>
 						))}
