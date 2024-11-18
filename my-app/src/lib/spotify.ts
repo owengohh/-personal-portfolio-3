@@ -129,8 +129,6 @@ export const getTopTracks = async (): Promise<SpotifyTrack[]> => {
 		},
 	});
 
-	console.log(response);
-
 	// Extract items from the response data
 	const { items } = response.data;
 
@@ -154,7 +152,6 @@ export const getTopTracks = async (): Promise<SpotifyTrack[]> => {
 
 export const getLastPlayed = async (): Promise<SpotifyTrack> => {
 	const { access_token } = await getAccessToken();
-	console.log(access_token);
 	// Fetch the recently played tracks
 	const response = await axios.get(GET_LAST_PLAYED_ENDPOINT, {
 		headers: {
