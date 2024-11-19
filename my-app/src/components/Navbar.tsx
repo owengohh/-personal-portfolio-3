@@ -1,118 +1,136 @@
-import {
-    NavigationMenu,
-    NavigationMenuList,
-    NavigationMenuItem,
-    NavigationMenuLink,
-} from "./ui/navigation-menu";
+"use client";
 
-import { Drawer, DrawerClose, DrawerContent } from "./ui/drawer";
-import { useState, useEffect, useRef } from "react";
-import ThemeToggler from "./ThemeToggler";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Toggle } from "./ui/toggle";
+import * as React from "react";
+import Link from "next/link";
+import { Moon, Sun, Menu } from "lucide-react";
+import { useTheme } from "next-themes";
+import { motion, AnimatePresence } from "framer-motion";
+
+import { Button } from "@/components/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const navItems = [
+	{ name: "Home", href: "#home" },
+	{ name: "About", href: "#about" },
+	{ name: "Experiences", href: "#experience" },
+	{ name: "Projects", href: "#projects" },
+	{ name: "Music", href: "#spotify" },
+];
 
 export default function Navbar() {
-    const navbarClasses = `container fixed top-5 left-0 right-0 z-50 items-center bg-primary text-secondary p-2 transition-all duration-300 rounded-full w-11/12 shadow`;
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-    const navItems = [
-        { name: "Home", ref: useRef(null) },
-        { name: "About", ref: useRef(null) },
-        { name: "Experiences", ref: useRef(null) },
-        { name: "Projects", ref: useRef(null) },
-        { name: "Music", ref: useRef(null) },
-    ];
+	return (
+		<motion.header
+			className="sticky top-4 z-50 w-full px-4"
+			initial={{ opacity: 0, y: -50 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.5 }}>
+			<nav className="mx-auto flex max-w-5xl items-center justify-between rounded-full bg-secondary px-6 py-3 shadow-lg transition-all duration-300 hover:shadow-xl">
+				<motion.div
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}>
+					<Link
+						href="#home"
+						className="text-xl font-bold text-secondary-foreground">
+						Owen Goh
+					</Link>
+				</motion.div>
+				<div className="hidden items-center space-x-1 md:flex">
+					{navItems.map((item, index) => (
+						<motion.div
+							key={item.name}
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ delay: index * 0.1 }}>
+							<Link
+								href={item.href}
+								className="relative rounded-full px-3 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary-foreground/10">
+								{item.name}
+								<motion.span
+									className="absolute bottom-0 left-0 h-[2px] w-full bg-primary"
+									initial={{ scaleX: 0 }}
+									whileHover={{ scaleX: 1 }}
+									transition={{ duration: 0.2 }}
+								/>
+							</Link>
+						</motion.div>
+					))}
+					<ThemeToggle />
+				</div>
+				<div className="md:hidden">
+					<DropdownMenu
+						open={isMobileMenuOpen}
+						onOpenChange={setIsMobileMenuOpen}>
+						<DropdownMenuTrigger asChild>
+							<Button
+								variant="ghost"
+								size="icon"
+								className="text-secondary-foreground">
+								<Menu className="h-5 w-5" />
+								<span className="sr-only">Toggle menu</span>
+							</Button>
+						</DropdownMenuTrigger>
+						<AnimatePresence>
+							{isMobileMenuOpen && (
+								<DropdownMenuContent
+									align="end"
+									className="w-[200px] bg-secondary"
+									asChild>
+									<motion.div
+										initial={{ opacity: 0, scale: 0.95 }}
+										animate={{ opacity: 1, scale: 1 }}
+										exit={{ opacity: 0, scale: 0.95 }}
+										transition={{ duration: 0.2 }}>
+										{navItems.map((item) => (
+											<DropdownMenuItem
+												key={item.name}
+												asChild>
+												<Link
+													href={item.href}
+													className="w-full text-secondary-foreground"
+													onClick={() =>
+														setIsMobileMenuOpen(
+															false
+														)
+													}>
+													{item.name}
+												</Link>
+											</DropdownMenuItem>
+										))}
+										<DropdownMenuItem>
+											<ThemeToggle />
+										</DropdownMenuItem>
+									</motion.div>
+								</DropdownMenuContent>
+							)}
+						</AnimatePresence>
+					</DropdownMenu>
+				</div>
+			</nav>
+		</motion.header>
+	);
+}
 
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+function ThemeToggle() {
+	const { theme, setTheme } = useTheme();
 
-    const [isSmallScreen, setIsSmallScreen] = useState(
-        typeof window !== "undefined" ? window.innerWidth < 640 : false
-    );
-
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsSmallScreen(window.innerWidth < 640);
-        };
-
-        window.addEventListener("resize", checkScreenSize);
-
-        return () => window.removeEventListener("resize", checkScreenSize);
-    }, []);
-
-    const scrollToSection = (ref) => {
-        if (ref.current) {
-            ref.current.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
-    return (
-        <div className={navbarClasses}>
-            <div className="w-full">
-                <NavigationMenu className="flex min-w-full justify-between">
-                    <NavigationMenuList className="flex">
-                        <NavigationMenuItem className="px-3">
-                            <p>
-                                <label
-                                    onClick={() => {
-                                        scrollToSection(navItems[0].ref);
-                                    }}>
-                                    Owen Goh
-                                </label>
-                            </p>
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                    {isSmallScreen ? (
-                        <NavigationMenuList className="flex items-center">
-                            <button
-                                className="p-3"
-                                onClick={() => {
-                                    setIsDrawerOpen(!isDrawerOpen);
-                                }}>
-                                <HamburgerMenuIcon></HamburgerMenuIcon>
-                            </button>
-                        </NavigationMenuList>
-                    ) : (
-                        <NavigationMenuList className="hidden sm:flex ">
-                            {navItems.map((item, index) => (
-                                <NavigationMenuItem
-                                    key={index}
-                                    className="px-1">
-                                    <NavigationMenuLink
-                                        onClick={() => scrollToSection(item.ref)}>
-                                        {item.name}
-                                    </NavigationMenuLink>
-                                </NavigationMenuItem>
-                            ))}
-                            <NavigationMenuItem className="px-1">
-                                <ThemeToggler />
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    )}
-                </NavigationMenu>
-            </div>
-            <Drawer
-                open={isDrawerOpen}
-                onOpenChange={setIsDrawerOpen}
-                direction="right">
-                <DrawerContent>
-                    <NavigationMenu>
-                    <NavigationMenuList className="flex flex-col p-4">
-                        {navItems.map((item, index) => (
-                            <NavigationMenuItem key={index} className="p-3">
-                                <NavigationMenuLink onClick={() => {
-                                    scrollToSection(item.ref);
-                                    setIsDrawerOpen(false);
-                                }}>
-                                    {item.name}
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                        ))}
-                        <NavigationMenuItem className="p-3">
-                            <ThemeToggler />
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
-                    </NavigationMenu>
-                </DrawerContent>
-            </Drawer>
-        </div>
-    );
+	return (
+		<motion.div whileTap={{ scale: 0.9 }}>
+			<Button
+				variant="ghost"
+				size="icon"
+				onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+				className="rounded-full text-secondary-foreground">
+				<Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+				<Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+				<span className="sr-only">Toggle theme</span>
+			</Button>
+		</motion.div>
+	);
 }

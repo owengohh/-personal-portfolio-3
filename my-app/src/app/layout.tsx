@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 // components
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 // theme provider
@@ -23,14 +23,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning className='scroll-smooth'>
+		<html lang="en" suppressHydrationWarning className="scroll-smooth">
 			<body
 				className={cn(
 					"min-h-screen bg-background font-sans antialiased",
 					inter.variable
 				)}>
 				<ThemeProvider attribute="class" defaultTheme="system">
-					<Header />
+					<Navbar></Navbar>
 					{children}
 					<Footer />
 				</ThemeProvider>

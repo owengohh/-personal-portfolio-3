@@ -74,7 +74,7 @@ export default function Component() {
 				</div>
 			</div>
 			<Card className="border-none bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 sm:bg-gradient-to-br sm:from-green-50 sm:to-teal-50 sm:dark:from-gray-800 sm:dark:to-gray-700">
-				<CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
 					<div className="flex items-center gap-6">
 						<Avatar className="h-24 w-24 rounded-md">
 							<AvatarImage
@@ -140,27 +140,27 @@ export default function Component() {
 								disabled
 							/>
 						</div>
-						<div className="flex items-center gap-4">
-							<Button size="icon" variant="ghost">
-								<Shuffle className="h-4 w-4" />
-							</Button>
-							<Button size="icon" variant="ghost">
-								<SkipBack className="h-4 w-4" />
-							</Button>
-							<Button size="icon" className="h-10 w-10">
-								{nowPlaying ? (
-									<Pause className="h-5 w-5" />
-								) : (
-									<Play className="h-5 w-5" />
-								)}
-							</Button>
-							<Button size="icon" variant="ghost">
-								<SkipForward className="h-4 w-4" />
-							</Button>
-							<Button size="icon" variant="ghost">
-								<Repeat className="h-4 w-4" />
-							</Button>
-						</div>
+                        <div className="flex items-center gap-2 sm:gap-4">
+                            <Button size="icon" variant="ghost">
+                                <Shuffle className="h-4 w-4 sm:h-5 sm:w-5" />
+                            </Button>
+                            <Button size="icon" variant="ghost">
+                                <SkipBack className="h-4 w-4 sm:h-5 sm:w-5" />
+                            </Button>
+                            <Button size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                                {nowPlaying ? (
+                                    <Pause className="h-4 w-4 sm:h-5 sm:w-5" />
+                                ) : (
+                                    <Play className="h-4 w-4 sm:h-5 sm:w-5" />
+                                )}
+                            </Button>
+                            <Button size="icon" variant="ghost">
+                                <SkipForward className="h-4 w-4 sm:h-5 sm:w-5" />
+                            </Button>
+                            <Button size="icon" variant="ghost">
+                                <Repeat className="h-4 w-4 sm:h-5 sm:w-5" />
+                            </Button>
+                        </div>
 						<div className="w-[100px]" />
 					</div>
 				</CardContent>
