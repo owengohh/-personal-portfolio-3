@@ -106,7 +106,7 @@ export default function Component() {
 						{projects.map((project) => (
 							<div
 								key={project.id}
-								className="flex-[0_0_100%] min-w-0 sm:pl-8 first:pl-0">
+								className="flex-[0_0_100%] min-w-0 first:pl-0">
 								<Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 bg-card h-full">
 									<CardContent className="p-0 h-full">
 										<div className="grid md:grid-cols-2 h-full">
